@@ -25,11 +25,11 @@ func main() {
 	fmt.Println(total)
 }
 
-func getCalibrationOne(s string) int {
-	first := int(s[strings.IndexAny(s, "0123456789")] - '0')
-	last := int(s[strings.LastIndexAny(s, "0123456789")] - '0')
-	return first*10 + last
-}
+// func getCalibrationOne(s string) int {
+// 	first := int(s[strings.IndexAny(s, "0123456789")] - '0')
+// 	last := int(s[strings.LastIndexAny(s, "0123456789")] - '0')
+// 	return first*10 + last
+// }
 
 func getCalibrationTwo(s string) int {
 	numbers := []string{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
