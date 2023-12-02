@@ -2,12 +2,16 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"os"
 	"strings"
 )
 
 func main() {
+	secondFlag := flag.Bool("second", false, "Run the solution for the second half of the puzzle")
+	flag.Parse()
+
 	file, err := os.Open("trebuchet.in")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to open file: %v\n", err)
@@ -19,17 +23,22 @@ func main() {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
-		total += getCalibrationTwo(line)
+
+		if *secondFlag {
+			total += getCalibrationTwo(line)
+		} else {
+			total += getCalibrationOne(line)
+		}
 	}
 
 	fmt.Println(total)
 }
 
-// func getCalibrationOne(s string) int {
-// 	first := int(s[strings.IndexAny(s, "0123456789")] - '0')
-// 	last := int(s[strings.LastIndexAny(s, "0123456789")] - '0')
-// 	return first*10 + last
-// }
+func getCalibrationOne(s string) int {
+	first := int(s[strings.IndexAny(s, "0123456789")] - '0')
+	last := int(s[strings.LastIndexAny(s, "0123456789")] - '0')
+	return first*10 + last
+}
 
 func getCalibrationTwo(s string) int {
 	numbers := []string{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
