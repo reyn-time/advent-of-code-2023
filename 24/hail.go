@@ -133,7 +133,10 @@ func canActuallyCollide(a, b Hailstone) bool {
 		if pos[i]%vel[i] != 0 {
 			return false
 		}
-		time := pos[i] / vel[i]
+		time := pos[i] / -vel[i]
+		if time < 0 {
+			return false
+		}
 		if prevTime != -1 && time != prevTime {
 			return false
 		}
